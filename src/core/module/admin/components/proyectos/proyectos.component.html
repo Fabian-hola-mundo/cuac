@@ -1,0 +1,128 @@
+<div class="proyectos">
+  <header class="proyectos__header">
+    <h1 class="proyectos__title">Gestión de Proyectos</h1>
+    <button class="proyectos__btn-nuevo">+ Nuevo Proyecto</button>
+  </header>
+
+  <div class="proyectos__content">
+    <div class="proyectos__filters">
+      <input type="text" placeholder="Buscar proyectos..." class="proyectos__search">
+      <select class="proyectos__filter-status">
+        <option value="">Todos los estados</option>
+        <option value="activo">Activo</option>
+        <option value="completado">Completado</option>
+        <option value="pausado">Pausado</option>
+      </select>
+    </div>
+
+    <div class="proyectos__table-container">
+      <table class="proyectos__table">
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Progreso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="proyectos__project-info">
+                <div class="proyectos__project-icon">🌐</div>
+                <div>
+                  <div class="proyectos__project-name">E-commerce Moderno</div>
+                  <div class="proyectos__project-category">Diseño Web</div>
+                </div>
+              </div>
+            </td>
+            <td>TechCorp</td>
+            <td><span class="proyectos__status proyectos__status--activo">Activo</span></td>
+            <td>15/01/2024</td>
+            <td>30/03/2024</td>
+            <td>
+              <div class="proyectos__progress">
+                <div class="proyectos__progress-bar">
+                  <div class="proyectos__progress-fill" style="width: 75%"></div>
+                </div>
+                <span>75%</span>
+              </div>
+            </td>
+            <td>
+              <div class="proyectos__actions">
+                <button class="proyectos__action-btn">✏️</button>
+                <button class="proyectos__action-btn">👁️</button>
+                <button class="proyectos__action-btn">🗑️</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="proyectos__project-info">
+                <div class="proyectos__project-icon">🎨</div>
+                <div>
+                  <div class="proyectos__project-name">Branding Startup</div>
+                  <div class="proyectos__project-category">Identidad Visual</div>
+                </div>
+              </div>
+            </td>
+            <td>InnovateLab</td>
+            <td><span class="proyectos__status proyectos__status--completado">Completado</span></td>
+            <td>01/12/2023</td>
+            <td>15/01/2024</td>
+            <td>
+              <div class="proyectos__progress">
+                <div class="proyectos__progress-bar">
+                  <div class="proyectos__progress-fill" style="width: 100%"></div>
+                </div>
+                <span>100%</span>
+              </div>
+            </td>
+            <td>
+              <div class="proyectos__actions">
+                <button class="proyectos__action-btn">✏️</button>
+                <button class="proyectos__action-btn">👁️</button>
+                <button class="proyectos__action-btn">🗑️</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="proyectos__project-info">
+                <div class="proyectos__project-icon">📱</div>
+                <div>
+                  <div class="proyectos__project-name">App Fintech</div>
+                  <div class="proyectos__project-category">UX/UI</div>
+                </div>
+              </div>
+            </td>
+            <td>FinanceApp</td>
+            <td><span class="proyectos__status proyectos__status--pausado">Pausado</span></td>
+            <td>01/02/2024</td>
+            <td>30/04/2024</td>
+            <td>
+              <div class="proyectos__progress">
+                <div class="proyectos__progress-bar">
+                  <div class="proyectos__progress-fill" style="width: 30%"></div>
+                </div>
+                <span>30%</span>
+              </div>
+            </td>
+            <td>
+              <div class="proyectos__actions">
+                <button class="proyectos__action-btn">✏️</button>
+                <button class="proyectos__action-btn">👁️</button>
+                <button class="proyectos__action-btn">🗑️</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

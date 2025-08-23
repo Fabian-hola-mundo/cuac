@@ -1,0 +1,103 @@
+<div class="usuarios">
+  <header class="usuarios__header">
+    <h1 class="usuarios__title">Gestión de Usuarios</h1>
+    <button class="usuarios__btn-nuevo">+ Nuevo Usuario</button>
+  </header>
+
+  <div class="usuarios__content">
+    <div class="usuarios__filters">
+      <input type="text" placeholder="Buscar usuarios..." class="usuarios__search">
+      <select class="usuarios__filter-role">
+        <option value="">Todos los roles</option>
+        <option value="admin">Administrador</option>
+        <option value="designer">Diseñador</option>
+        <option value="developer">Desarrollador</option>
+      </select>
+    </div>
+
+    <div class="usuarios__table-container">
+      <table class="usuarios__table">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Último Acceso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="usuarios__user-info">
+                <div class="usuarios__user-avatar">👨‍💼</div>
+                <div>
+                  <div class="usuarios__user-name">Carlos Rodríguez</div>
+                  <div class="usuarios__user-username">@carlos.rodriguez</div>
+                </div>
+              </div>
+            </td>
+            <td>carlos@cuacdesign.com</td>
+            <td><span class="usuarios__role usuarios__role--admin">Admin</span></td>
+            <td><span class="usuarios__status usuarios__status--activo">Activo</span></td>
+            <td>Hace 2 horas</td>
+            <td>
+              <div class="usuarios__actions">
+                <button class="usuarios__action-btn">✏️</button>
+                <button class="usuarios__action-btn">🔒</button>
+                <button class="usuarios__action-btn">🗑️</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="usuarios__user-info">
+                <div class="usuarios__user-avatar">👩‍🎨</div>
+                <div>
+                  <div class="usuarios__user-name">Ana Martínez</div>
+                  <div class="usuarios__user-username">@ana.martinez</div>
+                </div>
+              </div>
+            </td>
+            <td>ana@cuacdesign.com</td>
+            <td><span class="usuarios__role usuarios__role--designer">Diseñadora</span></td>
+            <td><span class="usuarios__status usuarios__status--activo">Activo</span></td>
+            <td>Hace 1 día</td>
+            <td>
+              <div class="usuarios__actions">
+                <button class="usuarios__action-btn">✏️</button>
+                <button class="usuarios__action-btn">🔒</button>
+                <button class="usuarios__action-btn">🗑️</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="usuarios__user-info">
+                <div class="usuarios__user-avatar">👨‍💻</div>
+                <div>
+                  <div class="usuarios__user-name">David López</div>
+                  <div class="usuarios__user-username">@david.lopez</div>
+                </div>
+              </div>
+            </td>
+            <td>david@cuacdesign.com</td>
+            <td><span class="usuarios__role usuarios__role--developer">Desarrollador</span></td>
+            <td><span class="usuarios__status usuarios__status--inactivo">Inactivo</span></td>
+            <td>Hace 1 semana</td>
+            <td>
+              <div class="usuarios__actions">
+                <button class="usuarios__action-btn">✏️</button>
+                <button class="usuarios__action-btn">🔒</button>
+                <button class="usuarios__action-btn">🗑️</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

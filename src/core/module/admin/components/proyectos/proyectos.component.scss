@@ -1,0 +1,225 @@
+:host {
+  .proyectos {
+    padding: 2rem;
+    background-color: var(--md-sys-color-surface);
+    min-height: 100vh;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+      color: var(--md-sys-color-on-surface);
+      margin: 0;
+    }
+
+    &__btn-nuevo {
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--md-sys-color-primary-container);
+        color: var(--md-sys-color-on-primary-container);
+        transform: translateY(-2px);
+      }
+    }
+
+    &__filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    &__search {
+      flex: 1;
+      min-width: 300px;
+      padding: 0.75rem;
+      border: 2px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      background-color: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+
+      &:focus {
+        outline: none;
+        border-color: var(--md-sys-color-primary);
+      }
+    }
+
+    &__filter-status {
+      padding: 0.75rem;
+      border: 2px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      background-color: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      min-width: 150px;
+    }
+
+    &__table-container {
+      background-color: var(--md-sys-color-surface-container);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    &__table th {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    &__table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      color: var(--md-sys-color-on-surface);
+    }
+
+    &__table tr:hover {
+      background-color: var(--md-sys-color-surface);
+    }
+
+    &__project-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &__project-icon {
+      font-size: 2rem;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__project-name {
+      font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 0.25rem;
+    }
+
+    &__project-category {
+      font-size: 0.9rem;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    &__status {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      display: inline-block;
+      min-width: 80px;
+
+      &--activo {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      &--completado {
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+      }
+
+      &--pausado {
+        background-color: #ff9800;
+        color: white;
+      }
+    }
+
+    &__progress {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    &__progress-bar {
+      flex: 1;
+      height: 8px;
+      background-color: var(--md-sys-color-outline-variant);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    &__progress-fill {
+      height: 100%;
+      background-color: var(--md-sys-color-primary);
+      transition: width 0.3s ease;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    &__action-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--md-sys-color-outline-variant);
+      }
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    .proyectos {
+      padding: 1rem;
+
+      &__header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      &__btn-nuevo {
+        width: 100%;
+      }
+
+      &__filters {
+        flex-direction: column;
+      }
+
+      &__search {
+        min-width: auto;
+      }
+
+      &__table-container {
+        overflow-x: auto;
+      }
+
+      &__table {
+        min-width: 800px;
+      }
+    }
+  }
+}
