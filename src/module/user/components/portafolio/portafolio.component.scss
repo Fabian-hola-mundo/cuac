@@ -1,0 +1,169 @@
+:host {
+  .portafolio {
+    &__header {
+      background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, var(--md-sys-color-primary-container) 100%);
+      color: var(--md-sys-color-on-primary);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    &__container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    &__title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    &__subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    &__content {
+      padding: 4rem 2rem;
+      background-color: var(--md-sys-color-surface);
+    }
+
+    &__filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    &__filter {
+      background-color: var(--md-sys-color-surface-container);
+      border: 2px solid transparent;
+      color: var(--md-sys-color-on-surface);
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+
+      &:hover {
+        background-color: var(--md-sys-color-primary-container);
+        color: var(--md-sys-color-on-primary-container);
+      }
+
+      &--active {
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+        border-color: var(--md-sys-color-primary);
+      }
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    &__item {
+      background-color: var(--md-sys-color-surface-container);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+
+        .portafolio__overlay {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__image {
+      height: 250px;
+      background-color: var(--md-sys-color-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__placeholder {
+      font-size: 4rem;
+      color: var(--md-sys-color-on-primary-container);
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(103, 80, 164, 0.9);
+      color: var(--md-sys-color-on-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    &__project-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    &__project-category {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    &__btn {
+      background-color: var(--md-sys-color-on-primary);
+      color: var(--md-sys-color-primary);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: transparent;
+        color: var(--md-sys-color-on-primary);
+        border: 2px solid var(--md-sys-color-on-primary);
+      }
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    .portafolio {
+      &__title {
+        font-size: 2.5rem;
+      }
+
+      &__subtitle {
+        font-size: 1.1rem;
+      }
+
+      &__filters {
+        justify-content: center;
+      }
+
+      &__filter {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      &__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

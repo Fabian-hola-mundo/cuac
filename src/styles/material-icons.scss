@@ -1,0 +1,132 @@
+/* Material Design Icons Configuration */
+
+/* Import Material Icons fonts */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone');
+
+/* Base Material Icon styles */
+.mat-icon {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Icons variants */
+.mat-icon.mat-icon-outlined {
+  font-family: 'Material Icons Outlined';
+}
+
+.mat-icon.mat-icon-round {
+  font-family: 'Material Icons Round';
+}
+
+.mat-icon.mat-icon-sharp {
+  font-family: 'Material Icons Sharp';
+}
+
+.mat-icon.mat-icon-two-tone {
+  font-family: 'Material Icons Two Tone';
+}
+
+/* Icon sizes */
+.mat-icon.mat-icon-sm {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.mat-icon.mat-icon-md {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.mat-icon.mat-icon-lg {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.mat-icon.mat-icon-xl {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+/* Icon colors */
+.mat-icon.mat-icon-primary {
+  color: var(--md-sys-color-primary);
+}
+
+.mat-icon.mat-icon-accent {
+  color: var(--md-sys-color-secondary);
+}
+
+.mat-icon.mat-icon-warn {
+  color: var(--md-sys-color-error);
+}
+
+.mat-icon.mat-icon-success {
+  color: #4caf50;
+}
+
+.mat-icon.mat-icon-info {
+  color: #2196f3;
+}
+
+/* Icon animations */
+.mat-icon.mat-icon-spin {
+  animation: mat-icon-spin 2s linear infinite;
+}
+
+@keyframes mat-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon accessibility */
+.mat-icon[aria-hidden="true"] {
+  display: inline-block;
+}
+
+.mat-icon[aria-label] {
+  cursor: pointer;
+}
+
+/* Icon button styles */
+.mat-icon-button .mat-icon {
+  margin: 0;
+  padding: 0;
+}
+
+/* Form field icon styles */
+.mat-form-field .mat-icon {
+  color: var(--md-sys-color-outline);
+}
+
+.mat-form-field.mat-focused .mat-icon {
+  color: var(--md-sys-color-primary);
+}
+
+.mat-form-field.mat-form-field-invalid .mat-icon {
+  color: var(--md-sys-color-error);
+}

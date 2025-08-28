@@ -1,0 +1,111 @@
+:host {
+  .servicios {
+    &__header {
+      background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, var(--md-sys-color-primary-container) 100%);
+      color: var(--md-sys-color-on-primary);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    &__container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    &__title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    &__subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    &__content {
+      padding: 4rem 2rem;
+      background-color: var(--md-sys-color-surface);
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    &__card {
+      background-color: var(--md-sys-color-surface-container);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &__icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__card-title {
+      font-size: 1.5rem;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 1rem;
+    }
+
+    &__description {
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    &__features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+
+      li {
+        color: var(--md-sys-color-on-surface);
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--md-sys-color-outline-variant);
+        position: relative;
+        padding-left: 1.5rem;
+
+        &:before {
+          content: "✓";
+          color: var(--md-sys-color-primary);
+          font-weight: bold;
+          position: absolute;
+          left: 0;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    .servicios {
+      &__title {
+        font-size: 2.5rem;
+      }
+
+      &__subtitle {
+        font-size: 1.1rem;
+      }
+
+      &__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

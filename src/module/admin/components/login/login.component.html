@@ -1,0 +1,275 @@
+<div class="login">
+  <div class="login__container">
+    <!-- Header del login -->
+    <div class="login__header">
+      <div class="login__logo">
+     <!-- ¿ -->
+        <h1 class="login__title">CUAC Design</h1>
+        <p class="login__subtitle">Panel Administrativo</p>
+      </div>
+    </div>
+
+    <!-- Contenedor principal del formulario -->
+    <div class="login__main">
+      <!-- Mensajes de estado -->
+      <div class="login__messages" *ngIf="loginError || successMessage">
+        <div class="login__error" *ngIf="loginError" role="alert" [attr.aria-live]="'polite'">
+          <mat-icon class="login__error-icon">error</mat-icon>
+          <span class="login__error-text">{{ loginError }}</span>
+        </div>
+        
+        <div class="login__success" *ngIf="successMessage" role="status" [attr.aria-live]="'polite'">
+          <mat-icon class="login__success-icon">check_circle</mat-icon>
+          <span class="login__success-text">{{ successMessage }}</span>
+        </div>
+      </div>
+
+      <!-- Formulario de login -->
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login__form" *ngIf="!isRegisterMode">
+        <h2 class="login__form-title">Iniciar Sesión</h2>
+        
+        <!-- Campo de email -->
+        <mat-form-field class="login__field" [class.login__field--error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <mat-label>Correo electrónico</mat-label>
+          <input 
+            matInput 
+            type="email" 
+            formControlName="email" 
+            placeholder="tu@email.com"
+            [attr.aria-describedby]="getEmailErrorId()"
+            autocomplete="email"
+            required>
+          <mat-icon matSuffix>email</mat-icon>
+          
+          <!-- Errores de validación del email -->
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')" [id]="'email-error-required-' + errorId">
+            El correo electrónico es requerido
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')" [id]="'email-error-format-' + errorId">
+            Ingresa un correo electrónico válido
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo de contraseña -->
+        <mat-form-field class="login__field" [class.login__field--error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <mat-label>Contraseña</mat-label>
+          <input 
+            matInput 
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="Tu contraseña"
+            [attr.aria-describedby]="getPasswordErrorId()"
+            autocomplete="current-password"
+            required>
+          <button 
+            mat-icon-button 
+            matSuffix 
+            type="button"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'">
+            <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+          
+          <!-- Errores de validación de la contraseña -->
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')" [id]="'password-error-required-' + errorId">
+            La contraseña es requerida
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')" [id]="'password-error-length-' + errorId">
+            La contraseña debe tener al menos 6 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Advertencia de Caps Lock -->
+        <div class="login__caps-warning" *ngIf="capsLockOn" role="alert">
+          <mat-icon class="login__caps-icon">keyboard_capslock</mat-icon>
+          <span>Bloq Mayús está activado</span>
+        </div>
+
+        <!-- Opciones adicionales -->
+        <div class="login__options">
+          <mat-checkbox 
+            formControlName="rememberMe" 
+            class="login__checkbox">
+            Recordar mi sesión
+          </mat-checkbox>
+          
+          <button 
+            type="button" 
+            class="login__link"
+            (click)="togglePasswordlessMode()">
+            ¿Olvidaste tu contraseña?
+          </button>
+        </div>
+
+        <!-- Botón de login -->
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit"
+          class="login__submit"
+          [disabled]="isLoading || loginForm.invalid"
+          [attr.aria-busy]="isLoading">
+          <mat-spinner 
+            *ngIf="isLoading" 
+            diameter="20" 
+            class="login__spinner">
+          </mat-spinner>
+          <span *ngIf="!isLoading">Iniciar Sesión</span>
+        </button>
+
+        <!-- Modo sin contraseña -->
+        <div class="login__passwordless" *ngIf="isPasswordlessMode">
+          <div class="login__passwordless-content">
+            <p class="login__passwordless-text">
+              Ingresa tu correo corporativo y te enviaremos un enlace de acceso seguro.
+            </p>
+            <button 
+              type="button" 
+              mat-stroked-button 
+              class="login__magic-link-btn"
+              (click)="sendMagicLink()"
+              [disabled]="isLoading">
+              <mat-icon>email</mat-icon>
+              Enviar enlace de acceso
+            </button>
+          </div>
+        </div>
+
+        <!-- Cambiar a modo registro -->
+        <div class="login__toggle">
+          <p class="login__toggle-text">
+            ¿No tienes cuenta?
+            <button 
+              type="button" 
+              class="login__toggle-btn"
+              (click)="toggleMode()">
+              Regístrate aquí
+            </button>
+          </p>
+        </div>
+      </form>
+
+      <!-- Formulario de registro -->
+      <form [formGroup]="registerForm" (ngSubmit)="registerWithMagicLink()" class="login__form" *ngIf="isRegisterMode">
+        <h2 class="login__form-title">Crear Cuenta</h2>
+        
+        <!-- Campo de nombre -->
+        <mat-form-field class="login__field">
+          <mat-label>Nombre</mat-label>
+          <input 
+            matInput 
+            type="text" 
+            formControlName="firstName" 
+            placeholder="Tu nombre"
+            autocomplete="given-name"
+            required>
+          <mat-icon matSuffix>person</mat-icon>
+          
+          <mat-error *ngIf="registerForm.get('firstName')?.hasError('required')">
+            El nombre es requerido
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('firstName')?.hasError('minlength')">
+            El nombre debe tener al menos 2 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo de apellido -->
+        <mat-form-field class="login__field">
+          <mat-label>Apellido</mat-label>
+          <input 
+            matInput 
+            type="text" 
+            formControlName="lastName" 
+            placeholder="Tu apellido"
+            autocomplete="family-name"
+            required>
+          <mat-icon matSuffix>person</mat-icon>
+          
+          <mat-error *ngIf="registerForm.get('lastName')?.hasError('required')">
+            El apellido es requerido
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('lastName')?.hasError('minlength')">
+            El apellido debe tener al menos 2 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo de email -->
+        <mat-form-field class="login__field" [class.login__field--error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <mat-label>Correo electrónico corporativo</mat-label>
+          <input 
+            matInput 
+            type="email" 
+            formControlName="email" 
+            placeholder="tu@dominio.com"
+            autocomplete="email"
+            required>
+          <mat-icon matSuffix>business</mat-icon>
+          
+          <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+            El correo electrónico es requerido
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+            Ingresa un correo electrónico válido
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('corporateEmail')">
+            Solo se permiten correos corporativos de dominios autorizados
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Opciones adicionales -->
+        <div class="login__options">
+          <mat-checkbox 
+            formControlName="rememberMe" 
+            class="login__checkbox">
+            Recordar mi sesión
+          </mat-checkbox>
+        </div>
+
+        <!-- Botón de registro -->
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit"
+          class="login__submit"
+          [disabled]="isLoading || registerForm.invalid">
+          <mat-spinner 
+            *ngIf="isLoading" 
+            diameter="20" 
+            class="login__spinner">
+          </mat-spinner>
+          <span *ngIf="!isLoading">Crear Cuenta</span>
+        </button>
+
+        <!-- Cambiar a modo login -->
+        <div class="login__toggle">
+          <p class="login__toggle-text">
+            ¿Ya tienes cuenta?
+            <button 
+              type="button" 
+              class="login__toggle-btn"
+              (click)="toggleMode()">
+              Inicia sesión aquí
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer del login -->
+    <div class="login__footer">
+      <div class="login__security-info" *ngIf="!isSecureConnection">
+        <mat-icon class="login__security-icon">security</mat-icon>
+        <span>Para mayor seguridad, usa HTTPS</span>
+      </div>
+      
+      <div class="login__help">
+        <p class="login__help-text">
+          ¿Necesitas ayuda? 
+          <a href="mailto:soporte@opitech.com.co" class="login__help-link">
+            Contacta al soporte
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
