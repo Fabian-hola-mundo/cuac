@@ -1,0 +1,14 @@
+{
+  "routes": {
+    "/": {},
+    "/admin": {},
+    "/admin/configuracion": {},
+    "/admin/proyectos": {},
+    "/admin/usuarios": {},
+    "/contacto": {},
+    "/inicio": {},
+    "/portafolio": {},
+    "/servicios": {},
+    "/sobre-nosotros": {}
+  }
+}

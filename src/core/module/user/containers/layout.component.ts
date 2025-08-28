@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -81,8 +81,7 @@ import { RouterModule } from '@angular/router';
       </div>
     </footer>
   `,
-  styleUrls: ['./layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
   isScrollingUp = true;
