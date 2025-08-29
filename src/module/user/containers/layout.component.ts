@@ -1,6 +1,6 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -10,31 +10,39 @@ import { RouterModule } from '@angular/router';
     <header class="layout__header">
       <nav class="layout__nav" [ngClass]="{ 'layout__nav--hidden': !isScrollingUp }">
         <div class="layout__nav-container">
-          <div class="layout__nav-logo">
-            <h2>Cuac Design</h2>
+          <div class="layout__nav-content">
+            <!-- Logo -->
+            <div class="layout__nav-logo" (click)="onLogoClick()">
+              <img 
+                src="assets/img/logo-ACTUALIZADO-01-1.svg" 
+                alt="CUAC Design Logo" 
+                class="layout__nav-logo-img"
+              />
+            </div>
+            
+            <!-- Menu principal -->
+            <div class="layout__nav-menu-section">
+              <div class="layout__nav-links">
+                <a routerLink="/servicios" routerLinkActive="layout__nav-link--active" class="layout__nav-link">SERVICIOS</a>
+                <div class="layout__nav-divider"></div>
+                <a routerLink="/portafolio" routerLinkActive="layout__nav-link--active" class="layout__nav-link">PORTAFOLIO</a>
+              </div>
+              
+              <!-- Botón CTA -->
+              <div class="layout__nav-cta">
+                <button class="layout__nav-btn-estanque" (click)="onEntrarEstanque()">
+                  ENTRAR AL ESTANQUE
+                </button>
+              </div>
+            </div>
+            
+            <!-- Hamburger para móvil -->
+            <button class="layout__nav-hamburger" [ngClass]="{ 'layout__nav-hamburger--active': isMobileMenuOpen }" (click)="toggleMobileMenu()" aria-label="Menú de navegación">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
-          <ul class="layout__nav-menu">
-            <li>
-              <a routerLink="/" routerLinkActive="layout__nav-link--active" class="layout__nav-link">Inicio</a>
-            </li>
-            <li>
-              <a routerLink="/servicios" routerLinkActive="layout__nav-link--active" class="layout__nav-link">Servicios</a>
-            </li>
-            <li>
-              <a routerLink="/portafolio" routerLinkActive="layout__nav-link--active" class="layout__nav-link">Portafolio</a>
-            </li>
-            <li>
-              <a routerLink="/sobre-nosotros" routerLinkActive="layout__nav-link--active" class="layout__nav-link">Sobre Nosotros</a>
-            </li>
-            <li>
-              <a routerLink="/contacto" class="layout__nav-link layout__nav-link--cta">Contacto</a>
-            </li>
-          </ul>
-          <button class="layout__nav-hamburger" [ngClass]="{ 'layout__nav-hamburger--active': isMobileMenuOpen }" (click)="toggleMobileMenu()" aria-label="Menú de navegación">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
         </div>
         
         <!-- Menú móvil -->
@@ -43,8 +51,7 @@ import { RouterModule } from '@angular/router';
             <li><a routerLink="/" (click)="toggleMobileMenu()" class="layout__nav-mobile-link">Inicio</a></li>
             <li><a routerLink="/servicios" (click)="toggleMobileMenu()" class="layout__nav-mobile-link">Servicios</a></li>
             <li><a routerLink="/portafolio" (click)="toggleMobileMenu()" class="layout__nav-mobile-link">Portafolio</a></li>
-            <li><a routerLink="/sobre-nosotros" (click)="toggleMobileMenu()" class="layout__nav-mobile-link">Sobre Nosotros</a></li>
-            <li><a routerLink="/contacto" (click)="toggleMobileMenu()" class="layout__nav-mobile-link">Contacto</a></li>
+            <li><a routerLink="/admin" (click)="toggleMobileMenu()" class="layout__nav-mobile-link">Admin</a></li>
           </ul>
         </div>
       </nav>
@@ -88,7 +95,10 @@ export class LayoutComponent {
   lastScrollPosition = 0;
   isMobileMenuOpen = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router: Router
+  ) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -101,5 +111,23 @@ export class LayoutComponent {
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  onEntrarEstanque() {
+    // Redirigir al área de administración
+    this.router.navigate(['/admin']);
+    // Cerrar menú móvil si está abierto
+    if (this.isMobileMenuOpen) {
+      this.toggleMobileMenu();
+    }
+  }
+
+  onLogoClick() {
+    // Redirigir al inicio cuando se hace clic en el logo
+    this.router.navigate(['/']);
+    // Cerrar menú móvil si está abierto
+    if (this.isMobileMenuOpen) {
+      this.toggleMobileMenu();
+    }
   }
 }

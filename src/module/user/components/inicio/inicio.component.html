@@ -1,35 +1,94 @@
 <div class="inicio">
-  <div class="inicio__hero">
-    <div class="inicio__hero-content">
-      <h1 class="inicio__title">Cuac Design</h1>
-      <p class="inicio__subtitle">Diseño creativo y soluciones digitales</p>
-      <div class="inicio__cta">
-        <a routerLink="/servicios" class="inicio__btn inicio__btn--primary">Nuestros Servicios</a>
-        <a routerLink="/portafolio" class="inicio__btn inicio__btn--secondary">Ver Portafolio</a>
+  <div class="inicio__contenedor-gradiente">
+    <!-- Sección Hero -->
+    <section class="inicio__hero">
+      <div class="inicio__hero-texto">
+        <h1 class="inicio__hero-titulo">ALETEANDO ENTRE IDEAS Y RESULTADOS INCREÍBLES</h1>
+        <div class="inicio__hero-linea"></div>
+        <p class="inicio__hero-subtitulo">Ilustración, marca, animación y mucho más...</p>
+        <div class="inicio__hero-botones">
+          <button class="inicio__btn inicio__btn--primary" (click)="onCotizarGratis()">
+            <span class="inicio__btn-texto">COTIZAR</span>
+            <span class="inicio__btn-texto--bold">GRATIS</span>
+          </button>
+          <button class="inicio__btn inicio__btn--secondary" (click)="onConoceNuestroTrabajo()">CONOCE NUESTRO TRABAJO</button>
+        </div>
       </div>
-    </div>
+      <div class="inicio__hero-imagen">
+        <!-- Espacio para la imagen de los personajes -->
+      </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section class="inicio__nosotros">
+      <div class="inicio__nosotros-contenido">
+        <div class="inicio__nosotros-info">
+          <h2 class="inicio__nosotros-titulo">SOMOS CUAC</h2>
+          <div class="inicio__nosotros-imagen">
+            <!-- Espacio para imagen del equipo -->
+          </div>
+          <p class="inicio__nosotros-descripcion">
+            <span class="inicio__nosotros-texto">Somos Sebastián, Natalia y Nathali, el equipo detrás de </span>
+            <span class="inicio__nosotros-texto--bold">Cuac Design</span>
+            <span class="inicio__nosotros-texto">, un colectivo creativo donde </span>
+            <span class="inicio__nosotros-texto--resaltado">damos vida a ideas</span>
+            <span class="inicio__nosotros-texto"> a través de ilustración, animación, diseño de marca y mucho más. Creamos personajes, universos visuales y piezas llenas de personalidad para conectar con las personas y </span>
+            <span class="inicio__nosotros-texto--resaltado">llevar cada proyecto a otro nivel</span>
+            <span class="inicio__nosotros-texto">.</span>
+          </p>
+        </div>
+        <div class="inicio__nosotros-video">
+          <div class="inicio__video-placeholder">
+            <div class="inicio__video-boton" (click)="onPlayVideo()">
+              <svg class="inicio__video-icono" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="inicio__timeline">
+        <div class="inicio__timeline-contenedor">
+          <div class="inicio__timeline-puntos">
+            <div class="inicio__timeline-punto" *ngFor="let item of timelineItems">
+              <div class="inicio__timeline-circulo"></div>
+              <span class="inicio__timeline-texto" [innerHTML]="item.texto.replace('\n', '<br>')"></span>
+            </div>
+          </div>
+          <div class="inicio__timeline-linea"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Cuaquiverso -->
+    <section class="inicio__cuaquiverso">
+      <div class="inicio__cuaquiverso-info">
+        <div class="inicio__cuaquiverso-imagen">
+          <!-- Espacio para imagen/video del Cuaquiverso -->
+        </div>
+        <p class="inicio__cuaquiverso-descripcion">
+          Somos el Cuaquiverso, una gran familia de personajes nacidos en el Universo CUAC. Cada uno tiene su propia
+          personalidad, gustos y aventuras, pero juntos contamos las historias que hacen que este mundo cobre vida.
+          Aquí todos tenemos algo que decir… y mucho que crear.
+        </p>
+      </div>
+
+      <!-- Grid de Personajes -->
+      <div class="inicio__personajes">
+        <div 
+          class="inicio__personaje" 
+          [ngClass]="'inicio__personaje--' + personaje.color"
+          *ngFor="let personaje of personajes"
+          (click)="onPersonajeClick(personaje)">
+          <div class="inicio__personaje-imagen"></div>
+          <div class="inicio__personaje-info">
+            <h3 class="inicio__personaje-nombre">{{ personaje.nombre }}</h3>
+            <p class="inicio__personaje-descripcion">{{ personaje.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-  
-  <section class="inicio__features">
-    <div class="inicio__container">
-      <h2 class="inicio__section-title">¿Por qué elegirnos?</h2>
-      <div class="inicio__features-grid">
-        <div class="inicio__feature">
-          <div class="inicio__feature-icon">🎨</div>
-          <h3 class="inicio__feature-title">Diseño Creativo</h3>
-          <p class="inicio__feature-description">Soluciones únicas y originales para tu marca</p>
-        </div>
-        <div class="inicio__feature">
-          <div class="inicio__feature-icon">💻</div>
-          <h3 class="inicio__feature-title">Desarrollo Web</h3>
-          <p class="inicio__feature-description">Sitios web modernos y responsivos</p>
-        </div>
-        <div class="inicio__feature">
-          <div class="inicio__feature-icon">📱</div>
-          <h3 class="inicio__feature-title">Experiencia de Usuario</h3>
-          <p class="inicio__feature-description">Interfaces intuitivas y atractivas</p>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
